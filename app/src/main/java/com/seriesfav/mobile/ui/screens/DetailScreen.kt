@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
-import com.seriesfav.mobile.data.model.Capitulo
+import com.seriesfav.mobile.data.model.VerItem  // ← CAMBIADO de Capitulo a VerItem
 import com.seriesfav.mobile.ui.theme.*
 import com.seriesfav.mobile.ui.viewmodel.HomeUiState
 import com.seriesfav.mobile.ui.viewmodel.HomeViewModel
@@ -111,7 +111,7 @@ private fun SectionBadge(seccion: String) {
 }
 
 @Composable
-private fun CapituloRow(number: Int, cap: Capitulo, onClick: () -> Unit) {
+private fun CapituloRow(number: Int, cap: VerItem, onClick: () -> Unit) {  // ← CAMBIADO
     Row(
         Modifier
             .fillMaxWidth()
@@ -131,8 +131,16 @@ private fun CapituloRow(number: Int, cap: Capitulo, onClick: () -> Unit) {
         }
         Spacer(Modifier.width(12.dp))
         Column(Modifier.weight(1f)) {
-            Text("${cap.temporada} · ${cap.capitulo}", color = Color.White,
-                 fontSize = 14.sp, fontWeight = FontWeight.Medium)
+            Text(
+                // Muestra "T1 · C3" si existen, o solo la URL si es un item simple
+                text = if (cap.temporada.isNotBlank() || cap.capitulo.isNotBlank())
+                           "${cap.temporada} · ${cap.capitulo}"
+                       else
+                           "Reproducir",
+                color = Color.White,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Medium
+            )
         }
         Icon(Icons.Default.PlayArrow, null, tint = RedAccent, modifier = Modifier.size(22.dp))
     }
