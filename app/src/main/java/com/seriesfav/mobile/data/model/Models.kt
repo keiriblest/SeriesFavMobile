@@ -1,21 +1,20 @@
 package com.seriesfav.mobile.data.model
 
-import com.google.gson.annotations.SerializedName
-
 data class Serie(
-    @SerializedName("titulo")      val titulo: String         = "",
-    @SerializedName("imgURL")      val imgURL: String         = "",
-    @SerializedName("temporada")   val temporada: String      = "",
-    @SerializedName("descripcion") val descripcion: String    = "",
-    @SerializedName("plataforma")  val plataforma: String     = "",
-    @SerializedName("seccion")     val seccion: String        = "",
-    @SerializedName("fecha")       val fecha: String          = "",
-    @SerializedName("trailerURL")  val trailerURL: String     = "",
-    @SerializedName("verURL")      val verURL: List<Capitulo> = emptyList()
+    val titulo: String = "",
+    val imgURL: String = "",
+    val temporada: String = "",
+    val descripcion: String = "",
+    val plataforma: String = "",
+    val seccion: String = "",
+    val fecha: String = "",
+    val trailerURL: String = "",
+    val verURL: List<VerItem> = emptyList(),
+    val descargas: List<VerItem> = emptyList()
 )
 
-data class Capitulo(
-    @SerializedName("temporada") val temporada: String = "",
-    @SerializedName("capitulo")  val capitulo: String  = "",
-    @SerializedName("url")       val url: String       = ""
+data class VerItem(
+    val temporada: String = "",
+    val capitulo: String = "",
+    val url: String = ""
 )
